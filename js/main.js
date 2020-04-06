@@ -57,6 +57,7 @@ for (var i = 0; i < 100 && (!numComputer.includes(numUtente)); i++) {
 
    if (numComputer.includes(numUtente)) {
       console.log('Hai Perso!');
+      console.log('Il tuo punteggio è: ', punteggio);
    }
 
    listaNumUtente.push(numUtente);
