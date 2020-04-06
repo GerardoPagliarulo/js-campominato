@@ -55,15 +55,14 @@ for (var i = 0; i < 100 && (!numComputer.includes(numUtente)); i++) {
       punteggio--;
    }
 
-   if (numComputer.includes(numUtente)) {
-      console.log('Hai Perso!');
-      console.log('Il tuo punteggio è: ', punteggio);
-   }
-
    listaNumUtente.push(numUtente);
 }
 
-if (!numComputer.includes(numUtente)) {
+if (numComputer.includes(numUtente)) {
+   console.log('Hai Perso!');
+   console.log('Il tuo punteggio è: ', punteggio);
+}
+else if (!numComputer.includes(numUtente)) {
    console.log('Hai Vinto!');
    console.log('Il tuo punteggio è: ', punteggio);
 }
