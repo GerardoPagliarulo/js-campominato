@@ -45,30 +45,10 @@ while (!(livelloDif === 'facile') && !(livelloDif === 'media') && !(livelloDif =
 
 // Il computer genera 16 numeri casuali (numeri vietati).
 for (var i = 0; i < 16; i++) {
-   switch (livelloDif) {
-      case 'facile':
-         numCasualiComputer = numRandom(1, 100);
-         break;
-      case 'media':
-         numCasualiComputer = numRandom(1, 80);
-         break;
-      case 'difficile':
-         numCasualiComputer = numRandom(1, 50);
-         break;
-   }
+  var numCasuali = difficolta(livelloDif);
          
    while (numComputer.includes(numCasualiComputer)) {
-      switch (livelloDif) {
-         case 'facile':
-            numCasualiComputer = numRandom(1, 100);
-            break;
-         case 'media':
-            numCasualiComputer = numRandom(1, 80);
-            break;
-         case 'difficile':
-            numCasualiComputer = numRandom(1, 50);
-            break;
-      }   
+      var numCasuali = difficolta(livelloDif);
    }
 
    numComputer.push(numCasualiComputer);
@@ -106,4 +86,19 @@ else if (!numComputer.includes(numUtente)) {
 // Generatore di numeri casuali
 function numRandom(min, max) {
    return Math.floor( Math.random() * (max - min + 1) ) + min;  
+}
+
+// Livello Difficoltà
+function difficolta(livelloDif) {
+   switch (livelloDif) {
+      case 'facile':
+         numCasualiComputer = numRandom(1, 100);
+         break;
+      case 'media':
+         numCasualiComputer = numRandom(1, 80);
+         break;
+      case 'difficile':
+         numCasualiComputer = numRandom(1, 50);
+         break;
+   }
 }
