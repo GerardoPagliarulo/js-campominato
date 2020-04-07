@@ -30,48 +30,80 @@
 var numComputer = [];
 var listaNumUtente = [];
 var punteggio = 0;
+var numCasualiComputer = 0;
 
-// Il computer genera 16 numeri casuali tra 1 e 100 (numeri vietati).
+// Selezionare la Difficoltà
+var livelloDif = prompt('Scegliere la difficoltà tra:\nFacile\nMedia\nDifficile', 'Facile')
+                .toLowerCase()
+                .trim();
+
+while (!(livelloDif === 'facile') && !(livelloDif === 'media') && !(livelloDif === 'difficile')) {
+   livelloDif = prompt('Scegliere la difficoltà tra:\nFacile\nMedia\nDifficile', 'Facile')
+               .toLowerCase()
+               .trim();
+}
+
+// Il computer genera 16 numeri casuali (numeri vietati).
 for (var i = 0; i < 16; i++) {
-   var numCasualiComputer = numRandom(1, 100);
+   switch (livelloDif) {
+      case 'facile':
+         numCasualiComputer = numRandom(1, 100);
+         break;
+      case 'media':
+         numCasualiComputer = numRandom(1, 80);
+         break;
+      case 'difficile':
+         numCasualiComputer = numRandom(1, 50);
+         break;
+   }
+         
+   while (numComputer.includes(numCasualiComputer)) {
+      switch (livelloDif) {
+         case 'facile':
+            numCasualiComputer = numRandom(1, 100);
+            break;
+         case 'media':
+            numCasualiComputer = numRandom(1, 80);
+            break;
+         case 'difficile':
+            numCasualiComputer = numRandom(1, 50);
+            break;
+      }   
+   }
 
    numComputer.push(numCasualiComputer);
 }
 console.log(numComputer); 
 
-// L’utente inserisce un numero alla volta, sempre compreso tra 1 e 100,
+// L’utente inserisce un numero alla volta, sempre compreso tra 1 e 100.
 // L’utente non può inserire più volte lo stesso numero.
 // La partita termina quando il giocatore inserisce un numero “vietato” o 
 // raggiunge il numero massimo possibile di numeri consentiti.
 for (var i = 0; i < 100 && (!numComputer.includes(numUtente)); i++) {
    var numUtente = parseInt( prompt('Inserire un numero da 1 a 100:') );
 
-   if (!numComputer.includes(numUtente)) {
-      punteggio++;
-   }
-
    while (listaNumUtente.includes(numUtente)) {
       numUtente = parseInt( prompt('Numero già inserito. Riprova:') );
       punteggio--;
+   }
+
+   if (!numComputer.includes(numUtente)) {
+      punteggio++;
    }
 
    listaNumUtente.push(numUtente);
 }
 
 if (numComputer.includes(numUtente)) {
-   console.log('Hai Perso!');
-   console.log('Il tuo punteggio è: ', punteggio);
+   alert('Hai Perso!\nIl tuo punteggio è : ' + punteggio);
 }
 else if (!numComputer.includes(numUtente)) {
-   console.log('Hai Vinto!');
-   console.log('Il tuo punteggio è: ', punteggio);
+   alert('Hai Vinto!\nIl tuo punteggio è : ' + punteggio);
 }
 
-// Difficoltà
 
-
-
-//Funzioni
+//FUNZIONI
+// Generatore di numeri casuali
 function numRandom(min, max) {
    return Math.floor( Math.random() * (max - min + 1) ) + min;  
 }
